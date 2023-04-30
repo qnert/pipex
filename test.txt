@@ -1,6 +1,0 @@
-lolut
-includes
-pipex.c
-pipex.h
-test.txt
-pipex
