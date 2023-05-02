@@ -6,7 +6,7 @@
 /*   By: skunert <skunert@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 16:49:35 by skunert           #+#    #+#             */
-/*   Updated: 2023/05/02 17:09:22 by skunert          ###   ########.fr       */
+/*   Updated: 2023/05/02 17:23:54 by skunert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 # include "./includes/includes.h"
 # include <unistd.h>
 # include <fcntl.h>
+# include <errno.h>
+# include <string.h>
 
 int		ft_outfile_check(char *filepath);
 int		ft_infile_check(char *filepath);
