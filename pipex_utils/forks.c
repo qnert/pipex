@@ -6,7 +6,7 @@
 /*   By: skunert <skunert@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 17:02:22 by skunert           #+#    #+#             */
-/*   Updated: 2023/05/02 17:18:35 by skunert          ###   ########.fr       */
+/*   Updated: 2023/05/02 18:01:09 by skunert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	fork_1(char **argv, int *fd, int fd_in)
 
 	pid = fork();
 	if (pid < 0)
-		return (0);
+		return (ft_printf("Error occured: %s\n", strerror(errno)), -1);
 	dup2(fd_in, STDIN_FILENO);
 	if (pid == 0)
 	{
@@ -36,7 +36,7 @@ int	fork_2(char **argv, int *fd, int fd_out)
 
 	pid = fork();
 	if (pid < 0)
-		return (0);
+		return (ft_printf("Error occured: %s\n", strerror(errno)), -1);
 	if (pid == 0)
 	{
 		dup2(fd[0], STDIN_FILENO);
