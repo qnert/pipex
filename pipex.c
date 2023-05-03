@@ -6,7 +6,7 @@
 /*   By: skunert <skunert@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 19:26:31 by skunert           #+#    #+#             */
-/*   Updated: 2023/05/02 17:57:57 by skunert          ###   ########.fr       */
+/*   Updated: 2023/05/03 11:03:51 by skunert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	main(int argc, char **argv)
 	if (argc == 5)
 	{
 		if (pipe(fd) == -1)
-			return (0);
+			return (ft_printf("Error occured: %s\n", strerror(errno), 0));
 		fd_in = ft_infile_check(argv[1]);
 		fd_out = ft_outfile_check(argv[4]);
 		if (fd_in != -1)
