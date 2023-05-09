@@ -6,7 +6,7 @@
 /*   By: skunert <skunert@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 22:32:32 by skunert           #+#    #+#             */
-/*   Updated: 2023/05/02 20:19:50 by skunert          ###   ########.fr       */
+/*   Updated: 2023/05/09 20:20:46 by skunert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,8 @@ int	ft_infile_check(char *filepath)
 
 char	**get_command(char **argv)
 {
-	int		i;
 	char	**command;
 
-	i = 0;
 	command = ft_split(argv[0], ' ');
 	if (command == NULL)
 		return (NULL);
