@@ -6,7 +6,7 @@
 /*   By: skunert <skunert@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 22:32:32 by skunert           #+#    #+#             */
-/*   Updated: 2023/05/22 11:03:15 by skunert          ###   ########.fr       */
+/*   Updated: 2023/05/22 16:33:24 by skunert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,10 @@ int	ft_outfile_check(char *filepath)
 	int	fd;
 	int	fd_err;
 
-	fd = open(filepath, O_RDWR | O_TRUNC, 0777);
+	fd = open(filepath, O_RDWR | O_TRUNC, 0644);
 	if (fd < 0)
 	{
-		fd_err = open(filepath, O_RDWR | O_CREAT, 0777);
+		fd_err = open(filepath, O_RDWR | O_CREAT, 0644);
 		return (fd_err);
 	}
 	return (fd);
@@ -78,3 +78,28 @@ int	execute_command(char **command, int fd)
 	free(s);
 	return (1);
 }
+
+// int	execute_command(char **argv, char **envp, int arg)
+// {
+// 	char	*cmd;
+// 	char	*whole_path;
+// 	char	**paths;
+// 	char	**cmd_args;
+// 	int		i;
+
+// 	whole_path = ft_substr(envp[4], 5, strlen(envp[4]) - 5);
+// 	paths = ft_split(whole_path, ':');
+// 	cmd_args = ft_split(argv[2], ' ');
+// 	i = 0;
+// 	while (paths[i] != NULL)
+// 	{
+// 		cmd = ft_strjoin(paths[i], argv[arg]);
+// 		if (execve(cmd, cmd_args, envp) == -1)
+// 			perror("Error");
+// 		free(cmd);
+// 		i++;
+// 	}
+// 	free_arr(paths);
+// 	free_arr(cmd_args);
+// 	return (1);
+// }
