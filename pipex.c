@@ -6,7 +6,7 @@
 /*   By: skunert <skunert@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 19:26:31 by skunert           #+#    #+#             */
-/*   Updated: 2023/05/22 10:51:02 by skunert          ###   ########.fr       */
+/*   Updated: 2023/05/22 11:12:18 by skunert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 int	main(int argc, char **argv)
 {
-	int		fd_in;
-	int		fd_out;
-	int		pid1;
-	int		pid2;
-	int		fd[2];
+	int				fd_in;
+	int				fd_out;
+	static int		pid1;
+	static int		pid2;
+	int				fd[2];
 
 	if (argc == 5)
 	{
@@ -30,7 +30,8 @@ int	main(int argc, char **argv)
 			pid1 = fork_1(argv, fd, fd_in);
 		else
 			ft_printf("Error occured: %s\n", strerror(errno));
-		pid2 = fork_2(argv, fd, fd_out);
+		if (pid1 != 0)
+			pid2 = fork_2(argv, fd, fd_out);
 		close(fd[0]);
 		close(fd[1]);
 		if (fd_in != -1)
