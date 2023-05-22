@@ -6,7 +6,7 @@
 /*   By: skunert <skunert@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 22:32:32 by skunert           #+#    #+#             */
-/*   Updated: 2023/05/22 10:38:37 by skunert          ###   ########.fr       */
+/*   Updated: 2023/05/22 10:41:05 by skunert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,10 +62,8 @@ char	**get_command(char **argv)
 int	execute_command(char **command)
 {
 	char	*s;
-	int		i;
 
 	s = ft_strjoin("/usr/bin/", command[0]);
-	i = 0;
 	if (execve(s, command, NULL) == -1)
 	{
 		free(s);
@@ -73,11 +71,10 @@ int	execute_command(char **command)
 		if (execve(s, command, NULL) == -1)
 		{
 			ft_printf("Command cannot be executed\n");
-			return (free_arr(command), 0);
+			return (free(s), free_arr(command), 0);
 		}
 	}
-	while (command[i] != NULL)
-		i++;
 	free_arr(command);
+	free(s);
 	return (1);
 }
