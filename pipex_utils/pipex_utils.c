@@ -6,7 +6,7 @@
 /*   By: skunert <skunert@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 22:32:32 by skunert           #+#    #+#             */
-/*   Updated: 2023/05/22 10:49:14 by skunert          ###   ########.fr       */
+/*   Updated: 2023/05/22 10:56:35 by skunert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	ft_outfile_check(char *filepath)
 	int	fd;
 	int	fd_err;
 
-	fd = open(filepath, O_RDWR, 0777);
+	fd = open(filepath, O_RDWR | O_TRUNC, 0777);
 	if (fd < 0)
 	{
 		fd_err = open(filepath, O_RDWR | O_CREAT | O_TRUNC, 0777);
