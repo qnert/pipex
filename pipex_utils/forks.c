@@ -6,7 +6,7 @@
 /*   By: skunert <skunert@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 17:02:22 by skunert           #+#    #+#             */
-/*   Updated: 2023/05/02 18:01:09 by skunert          ###   ########.fr       */
+/*   Updated: 2023/05/22 10:52:48 by skunert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 int	fork_1(char **argv, int *fd, int fd_in)
 {
 	int	pid;
+	int	og_out;
 
 	pid = fork();
 	if (pid < 0)
@@ -22,10 +23,11 @@ int	fork_1(char **argv, int *fd, int fd_in)
 	dup2(fd_in, STDIN_FILENO);
 	if (pid == 0)
 	{
+		og_out = dup(STDOUT_FILENO);
 		dup2(fd[1], STDOUT_FILENO);
 		close (fd[0]);
 		close (fd[1]);
-		execute_command(get_command(argv + 2));
+		execute_command(get_command(argv + 2), og_out);
 	}
 	return (pid);
 }
@@ -43,7 +45,7 @@ int	fork_2(char **argv, int *fd, int fd_out)
 		dup2(fd_out, STDOUT_FILENO);
 		close (fd[0]);
 		close (fd[1]);
-		execute_command(get_command(argv + 3));
+		execute_command(get_command(argv + 3), 3);
 	}
 	return (pid);
 }
