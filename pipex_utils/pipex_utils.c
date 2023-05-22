@@ -6,18 +6,18 @@
 /*   By: skunert <skunert@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 22:32:32 by skunert           #+#    #+#             */
-/*   Updated: 2023/05/09 20:20:46 by skunert          ###   ########.fr       */
+/*   Updated: 2023/05/22 10:38:37 by skunert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../pipex.h"
 
-static void	free_arr(char **arr, unsigned int size)
+static void	free_arr(char **arr)
 {
 	unsigned int	i;
 
 	i = 0;
-	while (arr[i] != NULL && i < size)
+	while (arr[i] != NULL)
 	{
 		free(arr[i]);
 		i++;
@@ -71,10 +71,13 @@ int	execute_command(char **command)
 		free(s);
 		s = ft_strjoin("/bin/", command[0]);
 		if (execve(s, command, NULL) == -1)
-			return (ft_printf("Command cannot be executed\n"), 0);
+		{
+			ft_printf("Command cannot be executed\n");
+			return (free_arr(command), 0);
+		}
 	}
 	while (command[i] != NULL)
 		i++;
-	free_arr(command, i);
+	free_arr(command);
 	return (1);
 }
