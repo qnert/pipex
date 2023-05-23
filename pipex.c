@@ -6,13 +6,13 @@
 /*   By: skunert <skunert@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 19:26:31 by skunert           #+#    #+#             */
-/*   Updated: 2023/05/22 11:12:18 by skunert          ###   ########.fr       */
+/*   Updated: 2023/05/23 13:10:02 by skunert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-int	main(int argc, char **argv)
+int	main(int argc, char **argv, char **envp)
 {
 	int				fd_in;
 	int				fd_out;
@@ -27,11 +27,11 @@ int	main(int argc, char **argv)
 		fd_in = ft_infile_check(argv[1]);
 		fd_out = ft_outfile_check(argv[4]);
 		if (fd_in != -1)
-			pid1 = fork_1(argv, fd, fd_in);
+			pid1 = fork_1(argv, envp, fd, fd_in);
 		else
 			ft_printf("Error occured: %s\n", strerror(errno));
 		if (pid1 != 0)
-			pid2 = fork_2(argv, fd, fd_out);
+			pid2 = fork_2(argv, envp, fd, fd_out);
 		close(fd[0]);
 		close(fd[1]);
 		if (fd_in != -1)
