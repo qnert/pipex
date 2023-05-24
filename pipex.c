@@ -6,7 +6,7 @@
 /*   By: skunert <skunert@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 19:26:31 by skunert           #+#    #+#             */
-/*   Updated: 2023/05/23 13:10:02 by skunert          ###   ########.fr       */
+/*   Updated: 2023/05/24 13:13:24 by skunert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	main(int argc, char **argv, char **envp)
 			pid1 = fork_1(argv, envp, fd, fd_in);
 		else
 			ft_printf("Error occured: %s\n", strerror(errno));
-		if (pid1 != 0)
+		if (pid1 != 0 || fd_in == -1)
 			pid2 = fork_2(argv, envp, fd, fd_out);
 		close(fd[0]);
 		close(fd[1]);
@@ -38,5 +38,6 @@ int	main(int argc, char **argv, char **envp)
 			waitpid(pid1, NULL, 0);
 		waitpid(pid2, NULL, 0);
 	}
+	system ("leaks pipex");
 	return (0);
 }
