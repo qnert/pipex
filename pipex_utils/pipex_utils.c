@@ -6,7 +6,7 @@
 /*   By: skunert <skunert@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 22:32:32 by skunert           #+#    #+#             */
-/*   Updated: 2023/05/23 13:34:12 by skunert          ###   ########.fr       */
+/*   Updated: 2023/05/24 14:49:58 by skunert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,9 @@ void	exec_cmd(char *cmd, char **envp)
 
 	cmd_args = ft_split(cmd, ' ');
 	cmd_path = get_path_env(cmd_args[0], envp);
-	if (execve(cmd_path, cmd_args, envp) == -1)
+	if (cmd_path == NULL)
+		write(2, "command not found\n", 18);
+	if (execve(cmd_path, cmd_args, envp) == -1 && cmd_path != NULL)
 	{
 		free_arr(cmd_args);
 		free(cmd_path);
