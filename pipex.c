@@ -6,7 +6,7 @@
 /*   By: skunert <skunert@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 19:26:31 by skunert           #+#    #+#             */
-/*   Updated: 2023/05/24 13:13:24 by skunert          ###   ########.fr       */
+/*   Updated: 2023/05/24 13:14:30 by skunert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,5 @@ int	main(int argc, char **argv, char **envp)
 			waitpid(pid1, NULL, 0);
 		waitpid(pid2, NULL, 0);
 	}
-	system ("leaks pipex");
 	return (0);
 }
