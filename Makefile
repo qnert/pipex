@@ -3,7 +3,7 @@ CFLAGS = -Wall -Wextra -Werror
 NAME = pipex
 NAME_BON = pipex_bonus
 
-SRCS = ./pipex_utils/pipex_utils.c
+SRCS = ./pipex_utils/utils.c ./pipex_utils/forks.c
 
 MAND = ./pipex_utils/pipex.c
 
