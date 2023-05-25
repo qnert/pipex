@@ -6,7 +6,7 @@
 /*   By: skunert <skunert@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 19:26:31 by skunert           #+#    #+#             */
-/*   Updated: 2023/05/25 11:30:14 by skunert          ###   ########.fr       */
+/*   Updated: 2023/05/25 14:49:48 by skunert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ int	main(int argc, char **argv, char **envp)
 		if (fd_in != -1)
 			waitpid(pid1, NULL, 0);
 		waitpid(pid2, NULL, 0);
+		close (fd_in);
+		close (fd_out);
 	}
 	return (0);
 }
