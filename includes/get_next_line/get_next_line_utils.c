@@ -6,52 +6,11 @@
 /*   By: skunert <skunert@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 19:26:28 by skunert           #+#    #+#             */
-/*   Updated: 2023/04/07 15:12:31 by skunert          ###   ########.fr       */
+/*   Updated: 2023/05/25 16:13:47 by skunert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-
-size_t	ft_strlen(const char *s)
-{
-	unsigned int	i;
-
-	i = 0;
-	while (s && s[i] != '\0')
-	{
-		i++;
-	}
-	return (i);
-}
-
-void	ft_bzero(void *dst, size_t n)
-{
-	unsigned char	*ptr_dst;
-	unsigned int	i;
-
-	ptr_dst = (unsigned char *) dst;
-	i = 0;
-	while (i < n)
-	{
-		ptr_dst[i] = '\0';
-		i++;
-	}
-}
-
-void	*ft_calloc(size_t nitems, size_t size)
-{
-	void			*ptr;
-	size_t			protect;
-
-	protect = nitems * size;
-	if ((size != 0) && (protect / size != nitems))
-		return (NULL);
-	ptr = malloc(nitems * size);
-	if (!ptr)
-		return (NULL);
-	ft_bzero(ptr, nitems * size);
-	return (ptr);
-}
 
 char	*ft_strjoin_free(const char *s1, const char *s2)
 {
@@ -78,24 +37,4 @@ char	*ft_strjoin_free(const char *s1, const char *s2)
 	}
 	free((void *) s1);
 	return (str_j);
-}
-
-char	*ft_strchr(const char *str, int c)
-{
-	int	i;
-	int	len;
-
-	i = 0;
-	if (str == NULL)
-		return ((char *)str);
-	len = ft_strlen((char *)str);
-	while (i < len)
-	{
-		if (str[i] == (char)c)
-			return ((char *) str + i);
-		i++;
-	}
-	if (str[i] == (char)c)
-		return ((char *) str + i);
-	return (0);
 }
