@@ -6,7 +6,7 @@
 /*   By: skunert <skunert@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 09:04:30 by skunert           #+#    #+#             */
-/*   Updated: 2023/05/25 09:39:55 by skunert          ###   ########.fr       */
+/*   Updated: 2023/05/25 10:01:35 by skunert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ int	main(int argc, char **argv, char **envp)
 {
 	int	fd_in;
 	int	fd_out;
+	int	fd[2];
+	int	pid;
 	int	i;
 
 	if (argc >= 6)
@@ -26,7 +28,9 @@ int	main(int argc, char **argv, char **envp)
 		i = 2;
 		while (i < argc - 2)
 		{
-			fork_child_proc(argv, envp, i);
+			pid = fork_child_proc(argv, envp, i, fd);
+			if (pid == -1)
+				return (-1);
 			i++;
 		}
 		dup2(fd_out, STDOUT_FILENO);
@@ -35,9 +39,8 @@ int	main(int argc, char **argv, char **envp)
 	return (0);
 }
 
-int	fork_child_proc(char **argv, char **envp, int i)
+int	fork_child_proc(char **argv, char **envp, int i, int *fd)
 {
-	int	fd[2];
 	int	pid;
 
 	if (pipe(fd) == -1)
