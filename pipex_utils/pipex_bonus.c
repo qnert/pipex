@@ -6,7 +6,7 @@
 /*   By: skunert <skunert@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 09:04:30 by skunert           #+#    #+#             */
-/*   Updated: 2023/05/25 16:12:28 by skunert          ###   ########.fr       */
+/*   Updated: 2023/05/25 16:16:04 by skunert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ int	main(int argc, char **argv, char **envp)
 	int	fd_in;
 	int	fd_out;
 	int	check;
-	char *line;
 
 	if (argc >= 6)
 	{
@@ -26,8 +25,7 @@ int	main(int argc, char **argv, char **envp)
 		if (ft_strncmp(argv[1], "here_doc", 8) == 0)
 		{
 			fd_in = open("here_doc", O_RDWR | O_CREAT);
-			dup2(STDIN_FILENO, fd_in);
-			line = get_next_line(0);
+			dup2(fd_in, STDIN_FILENO);
 		}
 		else
 		{
