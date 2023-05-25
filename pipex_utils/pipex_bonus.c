@@ -6,7 +6,7 @@
 /*   By: skunert <skunert@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 09:04:30 by skunert           #+#    #+#             */
-/*   Updated: 2023/05/25 11:21:37 by skunert          ###   ########.fr       */
+/*   Updated: 2023/05/25 11:39:30 by skunert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ int	main(int argc, char **argv, char **envp)
 				return (-1);
 			i++;
 		}
+		if (pipe(fd) == -1)
+			return (perror("Error"), -1);
 		fork_2(argv + (argc - 5), envp, fd, fd_out);
 	}
 	return (0);
