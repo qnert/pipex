@@ -2,7 +2,7 @@ CC = CC
 CFLAGS = -Wall -Wextra -Werror
 NAME = pipex
 
-SRCS = ./pipex_utils/pipex_utils.c pipex.c ./pipex_utils/forks.c
+SRCS = ./pipex_utils/pipex_utils.c ./pipex_utils/pipex.c
 
 OBJS = $(SRCS:.c=.o)
 
