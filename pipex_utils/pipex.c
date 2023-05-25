@@ -6,7 +6,7 @@
 /*   By: skunert <skunert@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 19:26:31 by skunert           #+#    #+#             */
-/*   Updated: 2023/05/25 10:55:55 by skunert          ###   ########.fr       */
+/*   Updated: 2023/05/25 11:30:14 by skunert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,6 @@ int	main(int argc, char **argv, char **envp)
 		fd_out = ft_outfile_check(argv[4]);
 		if (fd_in != -1)
 			pid1 = fork_1(argv, envp, fd, fd_in);
-		else
-			ft_printf("Error occured: %s\n", strerror(errno));
 		if (pid1 != 0 || fd_in == -1)
 			pid2 = fork_2(argv, envp, fd, fd_out);
 		close(fd[0]);
