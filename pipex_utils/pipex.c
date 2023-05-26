@@ -6,7 +6,7 @@
 /*   By: skunert <skunert@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 09:04:30 by skunert           #+#    #+#             */
-/*   Updated: 2023/05/26 15:36:16 by skunert          ###   ########.fr       */
+/*   Updated: 2023/05/26 16:49:36 by skunert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	pipex(char **argv, char **envp, int fd_in, int fd_out)
 	if (fd_in == -1)
 		fork_end(argv + (argc - 2), envp, fd, fd_out);
 	else
-		fork_end(argv + 1, envp, fd, fd_out);
+		fork_end(argv + i, envp, fd, fd_out);
 	return (0);
 }
 
