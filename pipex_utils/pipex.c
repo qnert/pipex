@@ -6,7 +6,7 @@
 /*   By: skunert <skunert@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 09:04:30 by skunert           #+#    #+#             */
-/*   Updated: 2023/05/26 17:06:15 by skunert          ###   ########.fr       */
+/*   Updated: 2023/05/26 17:11:56 by skunert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ int	main(int argc, char **argv, char **envp)
 		pipex(argv, envp, fd_in, fd_out);
 		if (ft_strncmp(argv[1], "here_doc", 8) == 0)
 			unlink(argv[1]);
+		close(fd_in);
+		close(fd_out);
 	}
 	return (0);
 }
@@ -69,6 +71,7 @@ int	read_till_limiter(char **argv)
 		line = get_next_line(0);
 	}
 	free(line);
+	close(fd_in);
 	fd_in = open(argv[1], O_RDONLY);
 	return (fd_in);
 }

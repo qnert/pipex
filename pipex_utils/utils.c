@@ -6,7 +6,7 @@
 /*   By: skunert <skunert@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 22:32:32 by skunert           #+#    #+#             */
-/*   Updated: 2023/05/25 11:26:23 by skunert          ###   ########.fr       */
+/*   Updated: 2023/05/26 18:16:36 by skunert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,8 @@ void	exec_cmd(char *cmd, char **envp)
 	char	*cmd_path;
 
 	cmd_args = ft_split(cmd, ' ');
+	if (ft_strncmp(cmd_args[0], "awk", 3) == 0)
+		get_awk_args(cmd_args);
 	cmd_path = get_path_env(cmd_args[0], envp);
 	if (cmd_path == NULL)
 		write(2, "command not found\n", 18);
