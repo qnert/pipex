@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: skunert <skunert@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/30 19:26:31 by skunert           #+#    #+#             */
-/*   Updated: 2023/05/25 14:49:48 by skunert          ###   ########.fr       */
+/*   Created: 2023/05/25 09:04:30 by skunert           #+#    #+#             */
+/*   Updated: 2023/05/26 15:36:16 by skunert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,29 +14,47 @@
 
 int	main(int argc, char **argv, char **envp)
 {
-	int				fd_in;
-	int				fd_out;
-	static int		pid1;
-	static int		pid2;
-	int				fd[2];
+	int	fd_in;
+	int	fd_out;
 
-	if (argc == 5)
+	if (argc >= 5)
 	{
-		if (pipe(fd) == -1)
-			return (ft_printf("Error occured: %s\n", strerror(errno), 0));
+		fd_out = ft_outfile_check(argv[argc - 1]);
 		fd_in = ft_infile_check(argv[1]);
-		fd_out = ft_outfile_check(argv[4]);
-		if (fd_in != -1)
-			pid1 = fork_1(argv, envp, fd, fd_in);
-		if (pid1 != 0 || fd_in == -1)
-			pid2 = fork_2(argv, envp, fd, fd_out);
-		close(fd[0]);
-		close(fd[1]);
-		if (fd_in != -1)
-			waitpid(pid1, NULL, 0);
-		waitpid(pid2, NULL, 0);
-		close (fd_in);
-		close (fd_out);
+		pipex(argv, envp, fd_in, fd_out);
 	}
 	return (0);
+}
+
+int	pipex(char **argv, char **envp, int fd_in, int fd_out)
+{
+	int	i;
+	int	argc;
+	int	fd[2];
+
+	argc = get_len_matrix(argv);
+	if (fd_in != -1)
+		dup2(fd_in, STDIN_FILENO);
+	if (pipe(fd) == -1)
+		return (perror("Error"), -1);
+	i = 1;
+	while (++i < argc - 2 && fd_in != -1)
+	{
+		fork_child_proc(argv + i, envp, fd);
+	}
+	if (fd_in == -1)
+		fork_end(argv + (argc - 2), envp, fd, fd_out);
+	else
+		fork_end(argv + 1, envp, fd, fd_out);
+	return (0);
+}
+
+int	get_len_matrix(char **matrix)
+{
+	int	i;
+
+	i = 0;
+	while (matrix[i] != NULL)
+		i++;
+	return (i);
 }

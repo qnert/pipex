@@ -6,13 +6,13 @@
 /*   By: skunert <skunert@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 10:54:36 by skunert           #+#    #+#             */
-/*   Updated: 2023/05/25 11:38:45 by skunert          ###   ########.fr       */
+/*   Updated: 2023/05/26 15:32:01 by skunert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../pipex.h"
 
-int	fork_child_proc(char **argv, char **envp, int i, int *fd)
+int	fork_child_proc(char **argv, char **envp, int *fd)
 {
 	int	pid;
 
@@ -25,7 +25,7 @@ int	fork_child_proc(char **argv, char **envp, int i, int *fd)
 	{
 		close(fd[0]);
 		dup2(fd[1], STDOUT_FILENO);
-		exec_cmd(argv[i], envp);
+		exec_cmd(argv[0], envp);
 		close (fd[1]);
 	}
 	else
@@ -38,25 +38,7 @@ int	fork_child_proc(char **argv, char **envp, int i, int *fd)
 	return (0);
 }
 
-int	fork_1(char **argv, char **envp, int *fd, int fd_in)
-{
-	int	pid;
-
-	pid = fork();
-	if (pid < 0)
-		return (ft_printf("Error occured: %s\n", strerror(errno)), -1);
-	dup2(fd_in, STDIN_FILENO);
-	if (pid == 0)
-	{
-		dup2(fd[1], STDOUT_FILENO);
-		close (fd[0]);
-		close (fd[1]);
-		exec_cmd(argv[2], envp);
-	}
-	return (pid);
-}
-
-int	fork_2(char **argv, char **envp, int *fd, int fd_out)
+int	fork_end(char **argv, char **envp, int *fd, int fd_out)
 {
 	int	pid;
 
@@ -69,7 +51,7 @@ int	fork_2(char **argv, char **envp, int *fd, int fd_out)
 		dup2(fd_out, STDOUT_FILENO);
 		close (fd[0]);
 		close (fd[1]);
-		exec_cmd(argv[3], envp);
+		exec_cmd(argv[0], envp);
 	}
 	return (pid);
 }
