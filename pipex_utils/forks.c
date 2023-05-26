@@ -6,7 +6,7 @@
 /*   By: skunert <skunert@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 10:54:36 by skunert           #+#    #+#             */
-/*   Updated: 2023/05/26 15:32:01 by skunert          ###   ########.fr       */
+/*   Updated: 2023/05/26 15:40:03 by skunert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 int	fork_child_proc(char **argv, char **envp, int *fd)
 {
-	int	pid;
+	pid_t	pid;
 
 	if (pipe(fd) == -1)
 		return (perror("Error"), -1);
-		pid = fork();
+	pid = fork();
 	if (pid == -1)
 		return (perror("Error"), -1);
 	if (pid == 0)
@@ -40,7 +40,7 @@ int	fork_child_proc(char **argv, char **envp, int *fd)
 
 int	fork_end(char **argv, char **envp, int *fd, int fd_out)
 {
-	int	pid;
+	pid_t	pid;
 
 	pid = fork();
 	if (pid < 0)
