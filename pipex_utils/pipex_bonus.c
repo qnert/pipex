@@ -6,7 +6,7 @@
 /*   By: skunert <skunert@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 09:04:30 by skunert           #+#    #+#             */
-/*   Updated: 2023/05/25 16:46:24 by skunert          ###   ########.fr       */
+/*   Updated: 2023/05/26 14:33:22 by skunert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,12 @@ int	main(int argc, char **argv, char **envp)
 {
 	int	fd_in;
 	int	fd_out;
-	int	check;
 
 	if (argc >= 6)
 	{
 		fd_out = ft_outfile_check(argv[argc - 1]);
 		fd_in = ft_infile_check(argv[1]);
-		check = pipex(argv, envp, fd_in, fd_out);
-		if (check == -1)
-			return (-1);
+		pipex(argv, envp, fd_in, fd_out);
 	}
 	return (0);
 }
