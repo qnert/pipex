@@ -23,7 +23,7 @@ The pipe operator in C allows the output of one program or function to serve as 
 
 ## Installation
 
-To use the pipe operator imitation library in your C project, follow these steps:
+To use the pipe operator imitation program, follow these steps:
 
 1. Clone the repository:
 
@@ -31,10 +31,10 @@ To use the pipe operator imitation library in your C project, follow these steps
    git clone https://github.com/qnert/pipex.git
    ```
 
-2. Copy the library files into your project directory.
+2. Move into the directory "pipex" and "make".
 
 ## USAGE
-1. Do the make command and use the terminal to execute the programm as following:
+1. The program can be executed as the following structure:
 
    ```
    ./pipex infile "command-1" "command-2" "..." "command-n" outfile
