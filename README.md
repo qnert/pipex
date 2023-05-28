@@ -37,7 +37,7 @@ To use the pipe operator imitation library in your C project, follow these steps
 1. Do the make command and use the terminal to execute the programm as following:
 
    ```
-   ./pipex infile "command-1" "command-2" "..." "commandn" outfile
+   ./pipex infile "command-1" "command-2" "..." "command-n" outfile
    ```
  2. Bonus feature is the use of the here-document:
 
