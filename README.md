@@ -41,6 +41,6 @@ To use the pipe operator imitation library in your C project, follow these steps
    ```
  2. Bonus feature is the use of the here-document:
 
-   ```
-   ./pipex here_doc LIMITER "command-1" "command-2" "..." "command-n" outfile
-   ```
+    ```
+    ./pipex here_doc LIMITER "command-1" "command-2" "..." "command-n" outfile
+    ```
