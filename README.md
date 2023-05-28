@@ -1,4 +1,4 @@
-# Pipe Operator Imitation in C
+# Pipe Operator Implementation in C
 
 This project aims to imitate the functionality of the pipe operator (`|`) found in various shell and programming languages in the C programming language.
 
