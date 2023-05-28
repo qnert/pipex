@@ -11,7 +11,7 @@ This project aims to imitate the functionality of the pipe operator (`|`) found 
 
 ## Introduction
 
-The pipe operator in C allows the output of one program or function to serve as the input of another, enabling the creation of powerful data processing pipelines. This project provides a library that enables similar functionality within C programs.
+The pipe operator in C allows the output of one program or function to serve as the input of another, enabling the creation of powerful data processing pipelines. This project provides a program imitating the pipe operator.
 
 ## Features
 
