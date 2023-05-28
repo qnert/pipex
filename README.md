@@ -1,6 +1,6 @@
 # Pipe Operator Implementation in C
 
-This project aims to imitate the functionality of the pipe operator (`|`) found in various shell and programming languages in the C programming language.
+This project aims to imitate the functionality of the pipe operator (`|`) found in various shell and programming language. The programm is written in C.
 
 ## Table of Contents
 
