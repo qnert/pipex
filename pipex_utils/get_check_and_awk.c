@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_awk_args.c                                     :+:      :+:    :+:   */
+/*   get_check_and_awk.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: skunert <skunert@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 17:24:40 by skunert           #+#    #+#             */
-/*   Updated: 2023/05/26 18:25:33 by skunert          ###   ########.fr       */
+/*   Updated: 2023/06/05 16:58:42 by skunert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,28 @@ void	get_awk_args(char **cmd_args)
 		i++;
 	}
 	cmd_args[2] = NULL;
+}
+
+char	*get_check(char **argv, char **envp, int argc)
+{
+	int		i;
+	int		j;
+	char	*cmd;
+	char	*ret_check;
+
+	i = 2;
+	while (i < argc - 2)
+	{
+		j = 0;
+		while (argv[i][j] != ' ')
+			j++;
+		cmd = ft_substr(argv[i], 0, j);
+		ret_check = get_path_env(cmd, envp);
+		free(cmd);
+		if (ret_check == NULL)
+			return (NULL);
+		free(ret_check);
+		i++;
+	}
+	return (ret_check);
 }

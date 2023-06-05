@@ -6,7 +6,7 @@
 /*   By: skunert <skunert@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 09:04:30 by skunert           #+#    #+#             */
-/*   Updated: 2023/05/26 17:11:56 by skunert          ###   ########.fr       */
+/*   Updated: 2023/06/05 17:02:55 by skunert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,21 +35,27 @@ int	main(int argc, char **argv, char **envp)
 
 int	pipex(char **argv, char **envp, int fd_in, int fd_out)
 {
-	int	i;
-	int	argc;
-	int	fd[2];
+	int		i;
+	int		argc;
+	int		fd[2];
+	char	*check;
 
 	argc = get_len_matrix(argv);
-	if (fd_in != -1)
+	check = get_check(argv, envp, argc);
+	if (fd_in != -1 && check != NULL)
 		dup2(fd_in, STDIN_FILENO);
 	if (pipe(fd) == -1)
 		return (perror("Error"), -1);
 	i = 1;
 	if (ft_strncmp(argv[1], "here_doc", 8) == 0)
 		i++;
-	while (++i < argc - 2 && fd_in != -1)
+	while (++i < argc - 2 && fd_in != -1 && check != NULL)
+	{
 		fork_child_proc(argv + i, envp, fd);
-	if (fd_in == -1)
+		if (ft_strncmp(argv[1], "/dev/urandom", 12) != 0)
+			wait(NULL);
+	}
+	if (fd_in == -1 || check == NULL)
 		fork_end(argv + (argc - 2), envp, fd, fd_out);
 	else
 		fork_end(argv + i, envp, fd, fd_out);

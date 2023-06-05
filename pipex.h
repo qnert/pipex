@@ -6,7 +6,7 @@
 /*   By: skunert <skunert@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 16:49:35 by skunert           #+#    #+#             */
-/*   Updated: 2023/05/26 17:30:11 by skunert          ###   ########.fr       */
+/*   Updated: 2023/06/05 16:56:57 by skunert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,6 @@ int		get_len_matrix(char **matrix);
 int		pipex(char **argv, char **envp, int fd_in, int fd_out);
 int		read_till_limiter(char **argv);
 void	get_awk_args(char **cmd_args);
+char	*get_check(char **argv, char **envp, int argc);
 
 #endif
