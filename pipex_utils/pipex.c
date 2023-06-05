@@ -6,7 +6,7 @@
 /*   By: skunert <skunert@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 09:04:30 by skunert           #+#    #+#             */
-/*   Updated: 2023/06/05 17:02:55 by skunert          ###   ########.fr       */
+/*   Updated: 2023/06/05 17:15:44 by skunert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,15 +50,12 @@ int	pipex(char **argv, char **envp, int fd_in, int fd_out)
 	if (ft_strncmp(argv[1], "here_doc", 8) == 0)
 		i++;
 	while (++i < argc - 2 && fd_in != -1 && check != NULL)
-	{
 		fork_child_proc(argv + i, envp, fd);
-		if (ft_strncmp(argv[1], "/dev/urandom", 12) != 0)
-			wait(NULL);
-	}
 	if (fd_in == -1 || check == NULL)
 		fork_end(argv + (argc - 2), envp, fd, fd_out);
 	else
 		fork_end(argv + i, envp, fd, fd_out);
+	wait(0);
 	return (0);
 }
 
