@@ -6,7 +6,7 @@
 /*   By: skunert <skunert@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 17:24:40 by skunert           #+#    #+#             */
-/*   Updated: 2023/06/05 16:58:42 by skunert          ###   ########.fr       */
+/*   Updated: 2023/06/06 12:20:11 by skunert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,8 @@ char	*get_check(char **argv, char **envp, int argc)
 		free(cmd);
 		if (ret_check == NULL)
 			return (NULL);
-		free(ret_check);
+		if ((i + 1) != (argc - 2))
+			free(ret_check);
 		i++;
 	}
 	return (ret_check);

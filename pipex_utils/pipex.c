@@ -6,7 +6,7 @@
 /*   By: skunert <skunert@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 09:04:30 by skunert           #+#    #+#             */
-/*   Updated: 2023/06/05 17:15:44 by skunert          ###   ########.fr       */
+/*   Updated: 2023/06/06 12:21:23 by skunert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ int	main(int argc, char **argv, char **envp)
 		fd_out = ft_outfile_check(argv[argc - 1]);
 		pipex(argv, envp, fd_in, fd_out);
 		if (ft_strncmp(argv[1], "here_doc", 8) == 0)
-			unlink(argv[1]);
+			if (unlink("here_doc") != 0)
+				perror("unlink() error");
 		close(fd_in);
 		close(fd_out);
 	}
@@ -40,15 +41,16 @@ int	pipex(char **argv, char **envp, int fd_in, int fd_out)
 	int		fd[2];
 	char	*check;
 
+	i = 0;
+	if (ft_strncmp(argv[1], "here_doc", 8) == 0)
+		i++;
 	argc = get_len_matrix(argv);
-	check = get_check(argv, envp, argc);
+	check = get_check(argv + i, envp, argc);
 	if (fd_in != -1 && check != NULL)
 		dup2(fd_in, STDIN_FILENO);
 	if (pipe(fd) == -1)
 		return (perror("Error"), -1);
-	i = 1;
-	if (ft_strncmp(argv[1], "here_doc", 8) == 0)
-		i++;
+	i++;
 	while (++i < argc - 2 && fd_in != -1 && check != NULL)
 		fork_child_proc(argv + i, envp, fd);
 	if (fd_in == -1 || check == NULL)
@@ -56,6 +58,8 @@ int	pipex(char **argv, char **envp, int fd_in, int fd_out)
 	else
 		fork_end(argv + i, envp, fd, fd_out);
 	wait(0);
+	if (check != NULL)
+		free(check);
 	return (0);
 }
 
