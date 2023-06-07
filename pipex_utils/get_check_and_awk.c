@@ -6,7 +6,7 @@
 /*   By: skunert <skunert@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 17:24:40 by skunert           #+#    #+#             */
-/*   Updated: 2023/06/06 12:20:11 by skunert          ###   ########.fr       */
+/*   Updated: 2023/06/07 16:35:26 by skunert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,4 +55,20 @@ char	*get_check(char **argv, char **envp, int argc)
 		i++;
 	}
 	return (ret_check);
+}
+
+void	check_envp(char **envp)
+{
+	int	i;
+
+	i = 0;
+	while (ft_strnstr(envp[i], "PATH", 4) == 0)
+	{
+		if (envp[i] == NULL)
+		{
+			ft_printf("PATH not found\n");
+			exit(-1);
+		}
+		i++;
+	}
 }
