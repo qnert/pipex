@@ -6,7 +6,7 @@
 /*   By: skunert <skunert@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 22:32:32 by skunert           #+#    #+#             */
-/*   Updated: 2023/06/08 10:52:12 by skunert          ###   ########.fr       */
+/*   Updated: 2023/06/08 11:28:50 by skunert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ char	*get_path_env(char *cmd, char **envp)
 	paths = ft_split(envp[i] + 5, ':');
 	i = -1;
 	if (access(cmd, F_OK | X_OK) == 0)
-		return (free_arr(paths), cmd);
+		return (free_arr(paths), ft_strdup(cmd));
 	while (paths[++i] != NULL)
 	{
 		curr_path = ft_strjoin(paths[i], "/");
