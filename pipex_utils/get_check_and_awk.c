@@ -6,11 +6,12 @@
 /*   By: skunert <skunert@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 17:24:40 by skunert           #+#    #+#             */
-/*   Updated: 2023/06/08 11:25:36 by skunert          ###   ########.fr       */
+/*   Updated: 2023/06/08 12:23:31 by skunert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../pipex.h"
+#include <stdio.h>
 
 void	get_awk_args(char **cmd_args)
 {
@@ -43,7 +44,7 @@ char	*get_check(char **argv, char **envp, int argc)
 	while (i <= argc - 2)
 	{
 		j = 0;
-		while (argv[i][j] != ' ')
+		while (argv[i][j] != '\0' && argv[i][j] != ' ')
 			j++;
 		cmd = ft_substr(argv[i], 0, j);
 		ret_check = get_path_env(cmd, envp);

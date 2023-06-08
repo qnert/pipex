@@ -1,5 +1,4 @@
-CC = CC
-CFLAGS = -Wall -Wextra -Werror
+CC = cc
 NAME = pipex
 
 SRCS = ./pipex_utils/utils.c ./pipex_utils/forks.c ./pipex_utils/pipex.c ./pipex_utils/get_check_and_awk.c

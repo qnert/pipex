@@ -6,7 +6,7 @@
 /*   By: skunert <skunert@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 22:32:32 by skunert           #+#    #+#             */
-/*   Updated: 2023/06/08 11:28:50 by skunert          ###   ########.fr       */
+/*   Updated: 2023/06/08 12:18:21 by skunert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,9 +74,8 @@ char	*get_path_env(char *cmd, char **envp)
 			return (free_arr(paths), cmd_path);
 		free(cmd_path);
 	}
-	free_arr(paths);
 	write(2, "command not found\n", 18);
-	return (NULL);
+	return (free_arr(paths), NULL);
 }
 
 void	exec_cmd(char *cmd, char **envp)
