@@ -1,10 +1,10 @@
 CC = cc
+CFLAGS = -Wall -Werror -Wextra
 NAME = pipex
 
 SRCS = ./pipex_utils/utils.c ./pipex_utils/forks.c ./pipex_utils/pipex.c ./pipex_utils/get_check_and_awk.c
 
 OBJS = $(SRCS:.c=.o)
-
 
 all: $(NAME)
 
