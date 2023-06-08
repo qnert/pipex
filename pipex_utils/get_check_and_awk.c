@@ -6,7 +6,7 @@
 /*   By: skunert <skunert@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 17:24:40 by skunert           #+#    #+#             */
-/*   Updated: 2023/06/08 13:27:03 by skunert          ###   ########.fr       */
+/*   Updated: 2023/06/08 15:47:49 by skunert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ void	check_envp(char **argv, char **envp)
 		check = check_absolut_path(argv);
 		if (check == -1)
 		{
-			ft_printf("command not found\n");
+			perror("Error: ");
 			exit(-1);
 		}
 	}
