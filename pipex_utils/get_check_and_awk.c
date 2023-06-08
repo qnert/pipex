@@ -6,7 +6,7 @@
 /*   By: skunert <skunert@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 17:24:40 by skunert           #+#    #+#             */
-/*   Updated: 2023/06/08 12:23:31 by skunert          ###   ########.fr       */
+/*   Updated: 2023/06/08 13:27:03 by skunert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ char	*get_check(char **argv, char **envp, int argc)
 	char	*ret_check;
 
 	i = 2;
-	while (i <= argc - 2)
+	while (i < argc - 2)
 	{
 		j = 0;
 		while (argv[i][j] != '\0' && argv[i][j] != ' ')
@@ -67,7 +67,7 @@ int	check_absolut_path(char **argv)
 
 	i = 2;
 	argc = get_len_matrix(argv);
-	while (i <= argc -2)
+	while (i < argc -2)
 	{
 		j = 0;
 		while (argv[i][j] != '\0' && argv[i][j] != ' ')

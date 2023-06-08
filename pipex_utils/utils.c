@@ -6,7 +6,7 @@
 /*   By: skunert <skunert@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 22:32:32 by skunert           #+#    #+#             */
-/*   Updated: 2023/06/08 12:18:21 by skunert          ###   ########.fr       */
+/*   Updated: 2023/06/08 13:33:34 by skunert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ char	*get_path_env(char *cmd, char **envp)
 	{
 		curr_path = ft_strjoin(paths[i], "/");
 		cmd_path = ft_strjoin(curr_path, cmd);
-		free(curr_path);
+		free (curr_path);
 		if (access(cmd_path, F_OK | X_OK) == 0)
 			return (free_arr(paths), cmd_path);
 		free(cmd_path);
@@ -90,11 +90,10 @@ void	exec_cmd(char *cmd, char **envp)
 	if (execve(cmd_path, cmd_args, envp) == -1 && cmd_path != NULL)
 	{
 		free_arr(cmd_args);
-		if (cmd_path != NULL)
-			free(cmd_path);
+		free(cmd_path);
 		perror("Error");
+		return ;
 	}
 	free_arr(cmd_args);
-	if (cmd_path != NULL)
-		free(cmd_path);
+	free(cmd_path);
 }
