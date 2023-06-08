@@ -6,7 +6,7 @@
 /*   By: skunert <skunert@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 17:24:40 by skunert           #+#    #+#             */
-/*   Updated: 2023/06/08 15:47:49 by skunert          ###   ########.fr       */
+/*   Updated: 2023/06/08 19:12:32 by skunert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ int	check_absolut_path(char **argv)
 void	check_envp(char **argv, char **envp)
 {
 	int	i;
+	int	fd;
 	int	check;
 
 	i = 0;
@@ -94,7 +95,9 @@ void	check_envp(char **argv, char **envp)
 		check = check_absolut_path(argv);
 		if (check == -1)
 		{
-			perror("Error: ");
+			fd = ft_outfile_check(argv[get_len_matrix(argv) - 1]);
+			write(2, "command not found\n", 18);
+			close (fd);
 			exit(-1);
 		}
 	}
