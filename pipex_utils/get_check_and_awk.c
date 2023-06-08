@@ -6,7 +6,7 @@
 /*   By: skunert <skunert@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 17:24:40 by skunert           #+#    #+#             */
-/*   Updated: 2023/06/08 10:15:36 by skunert          ###   ########.fr       */
+/*   Updated: 2023/06/08 10:48:50 by skunert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ char	*get_check(char **argv, char **envp, int argc)
 	char	*ret_check;
 
 	i = 2;
-	while (i < argc - 2)
+	while (i <= argc - 2)
 	{
 		j = 0;
 		while (argv[i][j] != ' ')
@@ -55,4 +55,39 @@ char	*get_check(char **argv, char **envp, int argc)
 		i++;
 	}
 	return (ret_check);
+}
+
+int	check_absolut_path(char **argv)
+{
+	int	i;
+	int	argc;
+
+	i = 2;
+	argc = get_len_matrix(argv);
+	while (i <= argc -2)
+	{
+		if (access(argv[i], F_OK | X_OK) != 0)
+			return (-1);
+		i++;
+	}
+	return (0);
+}
+
+void	check_envp(char **argv, char **envp)
+{
+	int	i;
+	int	check;
+
+	i = 0;
+	while (envp[i] != NULL && ft_strnstr(envp[i], "PATH", 4) == NULL)
+		i++;
+	if (envp[i] == NULL)
+	{
+		check = check_absolut_path(argv);
+		if (check == -1)
+		{
+			ft_printf("command not found\n");
+			exit(-1);
+		}
+	}
 }

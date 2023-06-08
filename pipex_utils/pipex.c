@@ -6,7 +6,7 @@
 /*   By: skunert <skunert@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 09:04:30 by skunert           #+#    #+#             */
-/*   Updated: 2023/06/08 10:24:13 by skunert          ###   ########.fr       */
+/*   Updated: 2023/06/08 10:32:01 by skunert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int	main(int argc, char **argv, char **envp)
 
 	if (argc >= 5)
 	{
+		check_envp(argv, envp);
 		if (ft_strncmp(argv[1], "here_doc", 8) == 0)
 			fd_in = read_till_limiter(argv);
 		else
