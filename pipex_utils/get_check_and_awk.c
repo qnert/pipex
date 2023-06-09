@@ -6,7 +6,7 @@
 /*   By: skunert <skunert@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 17:24:40 by skunert           #+#    #+#             */
-/*   Updated: 2023/06/09 13:11:30 by skunert          ###   ########.fr       */
+/*   Updated: 2023/06/09 13:43:56 by skunert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,7 @@ void	check_input(char **argv)
 		while (argv[i][j])
 		{
 			if (argv[i][j] != 32)
-				break;
+				break ;
 			j++;
 			if (argv[i][j] == '\0')
 			{
