@@ -6,7 +6,7 @@
 /*   By: skunert <skunert@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 17:24:40 by skunert           #+#    #+#             */
-/*   Updated: 2023/06/08 19:12:32 by skunert          ###   ########.fr       */
+/*   Updated: 2023/06/09 12:58:22 by skunert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,5 +100,21 @@ void	check_envp(char **argv, char **envp)
 			close (fd);
 			exit(-1);
 		}
+	}
+}
+
+void	check_input(char **argv)
+{
+	int	i;
+
+	i = 2;
+	while (argv[i + 1] != NULL)
+	{
+		if (ft_strlen(argv[i]) == 0)
+		{
+			write(2, "Empty command\n", 14);
+			exit(-1);
+		}
+		i++;
 	}
 }

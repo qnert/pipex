@@ -6,7 +6,7 @@
 /*   By: skunert <skunert@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 16:49:35 by skunert           #+#    #+#             */
-/*   Updated: 2023/06/08 10:31:47 by skunert          ###   ########.fr       */
+/*   Updated: 2023/06/09 12:57:12 by skunert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,6 @@ int		read_till_limiter(char **argv);
 void	get_awk_args(char **cmd_args);
 char	*get_check(char **argv, char **envp, int argc);
 void	check_envp(char **argv, char **envp);
+void	check_input(char **argv);
 
 #endif
