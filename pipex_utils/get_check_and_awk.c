@@ -6,7 +6,7 @@
 /*   By: skunert <skunert@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 17:24:40 by skunert           #+#    #+#             */
-/*   Updated: 2023/06/09 12:58:22 by skunert          ###   ########.fr       */
+/*   Updated: 2023/06/09 13:11:30 by skunert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,14 +106,27 @@ void	check_envp(char **argv, char **envp)
 void	check_input(char **argv)
 {
 	int	i;
+	int	j;
 
-	i = 2;
-	while (argv[i + 1] != NULL)
+	i = 1;
+	while (argv[i] != NULL)
 	{
 		if (ft_strlen(argv[i]) == 0)
 		{
-			write(2, "Empty command\n", 14);
+			write(2, "Empty input\n", 12);
 			exit(-1);
+		}
+		j = 0;
+		while (argv[i][j])
+		{
+			if (argv[i][j] != 32)
+				break;
+			j++;
+			if (argv[i][j] == '\0')
+			{
+				write(2, "Empty input\n", 12);
+				exit(-1);
+			}
 		}
 		i++;
 	}
