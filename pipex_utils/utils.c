@@ -6,7 +6,7 @@
 /*   By: skunert <skunert@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 22:32:32 by skunert           #+#    #+#             */
-/*   Updated: 2023/06/09 13:52:24 by skunert          ###   ########.fr       */
+/*   Updated: 2023/07/05 13:17:53 by skunert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,4 @@ void	exec_cmd(char *cmd, char **envp)
 		perror("Error");
 		return ;
 	}
-	free_arr(cmd_args);
-	free(cmd_path);
 }
