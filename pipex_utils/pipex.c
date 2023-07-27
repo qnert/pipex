@@ -6,7 +6,7 @@
 /*   By: skunert <skunert@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 09:04:30 by skunert           #+#    #+#             */
-/*   Updated: 2023/06/09 12:57:29 by skunert          ###   ########.fr       */
+/*   Updated: 2023/07/27 16:27:24 by skunert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,6 @@ int	pipex(char **argv, char **envp, int fd_in, int fd_out)
 	check = get_check(argv + i, envp, argc);
 	if (fd_in != -1 && check != NULL)
 		dup2(fd_in, STDIN_FILENO);
-	if (pipe(fd) == -1)
-		return (perror("Error"), -1);
 	i++;
 	while (++i < argc - 2 && fd_in != -1 && check != NULL)
 		fork_child_proc(argv + i, envp, fd);

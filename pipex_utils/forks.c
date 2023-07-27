@@ -6,7 +6,7 @@
 /*   By: skunert <skunert@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 10:54:36 by skunert           #+#    #+#             */
-/*   Updated: 2023/07/27 11:46:19 by skunert          ###   ########.fr       */
+/*   Updated: 2023/07/27 16:27:01 by skunert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ int	fork_child_proc(char **argv, char **envp, int *fd)
 {
 	pid_t	pid;
 
+	if (pipe(fd) == -1)
+		return (perror("Error"), -1);
 	pid = fork();
 	if (pid == -1)
 		return (perror("Error"), -1);
